@@ -179,7 +179,9 @@ private class ConnectUrlValueSuggester(connectSuggester: ConnectSuggester) exten
     val items = List(
       SuggestItem("jdbc:mysql://<host>:<port>/<dbName>?useSSL=false&haracterEncoding=utf8&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false", SpecialTableConst.OPTION_TABLE, Map("desc" -> "MySQL")),
       SuggestItem("jdbc:oracle:thin:@<host>:<port>:<dbName>", SpecialTableConst.OPTION_TABLE, Map("desc" -> "Oracle")),
-      SuggestItem("dbc:hive2://<host>:<port>/<dbName>;<sessionConfs>?<hiveConfs>#<hiveVars>", SpecialTableConst.OPTION_TABLE, Map("desc" -> "Hive"))
+      SuggestItem("jdbc:hive2://<host>:<port>/<dbName>;<sessionConfs>?<hiveConfs>#<hiveVars>", SpecialTableConst.OPTION_TABLE, Map("desc" -> "Hive")),
+      SuggestItem("jdbc:kylin://<host>:<port>/<dbName>", SpecialTableConst.OPTION_TABLE, Map("desc" -> "Kylin"))
+
     )
     LexerUtils.filterPrefixIfNeededWithStart(items, tokens, tokenPos, 1)
   }
@@ -211,7 +213,8 @@ private class ConnectDriverValueSuggester(connectSuggester: ConnectSuggester) ex
         List(
           SuggestItem("com.mysql.jdbc.Driver", SpecialTableConst.OPTION_TABLE, Map("desc" -> "MySQL")),
           SuggestItem("oracle.jdbc.driver.OracleDriver", SpecialTableConst.OPTION_TABLE, Map("desc" -> "Oracle")),
-          SuggestItem("org.apache.hive.jdbc.HiveDriver", SpecialTableConst.OPTION_TABLE, Map("desc" -> "Hive"))
+          SuggestItem("org.apache.hive.jdbc.HiveDriver", SpecialTableConst.OPTION_TABLE, Map("desc" -> "Hive")),
+          SuggestItem("org.apache.kylin.jdbc.Driver", SpecialTableConst.OPTION_TABLE, Map("desc" -> "Kylin"))
         )
       } else List(SuggestItem("\"\"", SpecialTableConst.OPTION_TABLE, Map("desc" -> "")))
     LexerUtils.filterPrefixIfNeededWithStart(items, tokens, tokenPos, 1)
