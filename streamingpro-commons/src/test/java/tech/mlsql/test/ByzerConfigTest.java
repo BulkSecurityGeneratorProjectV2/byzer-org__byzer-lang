@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -22,7 +23,7 @@ public class ByzerConfigTest {
     @Test
     public void testSparkConfig() throws IOException {
         PrintStream o = System.out;
-        File f = File.createTempFile("cfg", ".tmp");
+        File f = Files.createTempFile("cfg", ".tmp").toFile();
         PrintStream tmpOut = new PrintStream(new FileOutputStream(f), false, Charset.defaultCharset().name());
         System.setOut(tmpOut);
         ByzerConfigCLI.execute(new String[] { "-spark" });
@@ -45,7 +46,7 @@ public class ByzerConfigTest {
     @Test
     public void testByzerConfig() throws IOException {
         PrintStream o = System.out;
-        File f = File.createTempFile("cfg", ".tmp");
+        File f = Files.createTempFile("cfg", ".tmp").toFile();
         PrintStream tmpOut = new PrintStream(new FileOutputStream(f), false, Charset.defaultCharset().name());
         System.setOut(tmpOut);
         ByzerConfigCLI.execute(new String[] { "-byzer" });
@@ -70,7 +71,7 @@ public class ByzerConfigTest {
     @Test
     public void testGetSingleProp() throws IOException {
         PrintStream o = System.out;
-        File f = File.createTempFile("cfg", ".tmp");
+        File f = Files.createTempFile("cfg", ".tmp").toFile();
         PrintStream tmpOut = new PrintStream(new FileOutputStream(f), false, Charset.defaultCharset().name());
         System.setOut(tmpOut);
         ByzerConfigCLI.execute(new String[] { "streaming.rest" });
